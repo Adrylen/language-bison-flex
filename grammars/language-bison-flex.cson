@@ -1,0 +1,88 @@
+fileTypes: [
+	'y',
+	'l',
+	'lex',
+	'flex'
+]
+name: 'Bison/Flex'
+patterns: [
+	{
+		begin: '%\\{'
+		end: '%\\}'
+		name: 'meta.prologue.yacc'
+		patterns: [
+			{
+				include: 'source.c'
+			}
+		]
+	}
+	{
+		begin: '(?<=%\\})'
+		end: '(?=%%)'
+		name: 'meta.declarations.yacc'
+		patterns: [
+			{
+				match: '^%[a-z]+'
+				name: 'text.yacc.token'
+			}
+			{
+				match: '("|\').+("|\')'
+				name: 'text.yacc.yaccString'
+			}
+			{
+				match: '<[a-z]+>'
+				name: 'text.yacc.yaccString'
+			}
+			{
+				begin: '(?<=\\{)'
+				end: '(?=\\})'
+				patterns: [
+					{
+						include: 'source.c'
+					}
+				]
+			}
+		]
+	}
+	{
+		begin: '(?<=%%)'
+		end: '(?=%%)'
+		name: 'meta.rules.yacc'
+		patterns: [
+			{
+				match: '%[a-z]+'
+				name: 'text.yacc.token'
+			}
+			{
+				match: '\\[[^\\]]*\\]'
+				name: 'text.yacc.regexChars'
+			}
+			{
+				match: '\\\\[^ ]'
+				name: 'text.yacc.specialChars'
+			}
+			{
+				match: 'int|float|void|bool|char'
+				name: 'text.yacc.typeFunction'
+			}
+			{
+				match: '^[a-z]+'
+				name: 'text.yacc.rule'
+			}
+			{
+				match: '(?<=int|float|void|bool|char).*(?=\\()'
+				name: 'text.yacc.nameFunction'
+			}
+			{
+				begin: '(?<=\\{)'
+				end: '(?=\\})'
+				patterns: [
+					{
+						include: 'source.c'
+					}
+				]
+			}
+		]
+	}
+]
+scopeName: 'source.y'

@@ -1,0 +1,9 @@
+{
+  "name": "language-bison-flex",
+  "version": "0.1.0",
+  "description": "Bison and Flex files highlighting",
+  "repository": "https://github.com/atom/language",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
