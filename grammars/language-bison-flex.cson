@@ -1,5 +1,6 @@
 fileTypes: [
 	'y',
+	'ypp',
 	'l',
 	'lex',
 	'flex'
@@ -7,9 +8,9 @@ fileTypes: [
 name: 'Bison/Flex'
 patterns: [
 	{
-		begin: '%\\{'
-		end: '%\\}'
-		name: 'meta.prologue.yacc'
+		begin: '(?<=\\{)'
+		end: '(?=\\})'
+		name: 'meta.blocks.yacc'
 		patterns: [
 			{
 				include: 'source.c'
@@ -17,72 +18,42 @@ patterns: [
 		]
 	}
 	{
-		begin: '(?<=%\\})'
-		end: '(?=%%)'
-		name: 'meta.declarations.yacc'
+		begin: '(?<=\\()'
+		end: '(?=\\))'
+		name: 'meta.arguments.yacc'
 		patterns: [
 			{
-				match: '^%[a-z]+'
-				name: 'text.yacc.token'
-			}
-			{
-				match: '("|\').+("|\')'
-				name: 'text.yacc.yaccString'
-			}
-			{
-				match: '<[a-z]+>'
-				name: 'text.yacc.yaccString'
-			}
-			{
-				begin: '(?<=\\{)'
-				end: '(?=\\})'
-				patterns: [
-					{
-						include: 'source.c'
-					}
-				]
+				include: 'source.c'
 			}
 		]
 	}
 	{
-		begin: '(?<=%%)'
-		end: '(?=%%)'
-		name: 'meta.rules.yacc'
-		patterns: [
-			{
-				match: '%[a-z]+'
-				name: 'text.yacc.token'
-			}
-			{
-				match: '\\[[^\\]]*\\]'
-				name: 'text.yacc.regexChars'
-			}
-			{
-				match: '\\\\[^ ]'
-				name: 'text.yacc.specialChars'
-			}
-			{
-				match: 'int|float|void|bool|char'
-				name: 'text.yacc.typeFunction'
-			}
-			{
-				match: '^[a-z]+'
-				name: 'text.yacc.rule'
-			}
-			{
-				match: '(?<=int|float|void|bool|char).*(?=\\()'
-				name: 'text.yacc.nameFunction'
-			}
-			{
-				begin: '(?<=\\{)'
-				end: '(?=\\})'
-				patterns: [
-					{
-						include: 'source.c'
-					}
-				]
-			}
-		]
+		match: '\\\\.'
+		name: 'text.yacc.specialChars'
+	}
+	{
+		match: '^%[a-z]+'
+		name: 'text.yacc.declaration'
+	}
+	{
+		match: '\<[a-z]+\>'
+		name: 'text.yacc.cast'
+	}
+	{
+		match: '//.*'
+		name: 'text.yacc.comments'
+	}
+	{
+		match: '//.*'
+		name: 'text.yacc.comments'
+	}
+	{
+		match: '[a-zA-Z]+:'
+		name: 'text.yacc.rule'
+	}
+	{
+		match: '.+'
+		include: 'source.c'
 	}
 ]
 scopeName: 'source.y'

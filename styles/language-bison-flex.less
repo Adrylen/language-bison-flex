@@ -1,12 +1,17 @@
 @import 'ui-variables';
 
 atom-text-editor::shadow, .text .yacc {
-	.token {
+	.declaration {
 		color: #dc143c;
 	}
 
-	.yaccString {
+	.cast, .chars {
 		color: #5f9ea0;
+	}
+
+	.comments {
+		color: #616161;
+		font-style: italic;
 	}
 
 	.regexChars {
