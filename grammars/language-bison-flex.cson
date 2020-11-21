@@ -35,5 +35,31 @@ patterns: [
 		match: '%(left|right|empty)'
 		name: 'keyword.second'
 	}
+	# Metadata block
+	{
+		begin: '(%\\{)'
+		beginCaptures:
+			1: { name: 'punct.meta.block.start' }
+		end: '(%\\})'
+		endCaptures:
+			1: { name: 'punct.meta.block.end' }
+		patterns: [{ include: 'source.c' }]
+	}
+	# Rules and Code
+	{
+		begin: '(%%)'
+		beginCaptures:
+			1: { name: 'punct.rules.start' }
+		patterns: [
+			# Code
+			{
+				begin: '^(%%)'
+				beginCaptures:
+					1: { name: 'punct.code.start' }
+				patterns: [{ include: 'source.c' }]
+			}
+			{ include: '$self' }
+		]
+	}
 ]
 scopeName: 'source.y'

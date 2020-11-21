@@ -21,6 +21,32 @@ atom-text-editor .syntax--source {
 				color: var(--salmon);
 			}
 		}
+		
+		// Punctuations
+		.syntax--punct {
+			&.syntax--meta {
+				&.syntax--block {
+					&.syntax--start, &.syntax--end {
+						color: var(--orange);
+						font-style: italic;
+					}
+				}
+			}
+			
+			&.syntax--rules {
+				&.syntax--start {
+					color: var(--orange);
+					font-style: italic;
+				}
+			}
+			&.syntax--code {
+				&.syntax--start {
+					color: var(--orange);
+					font-style: italic;
+				}
+			}
+		}
+		
 		// Texts
 		.syntax--text {
 			&.syntax--comments {
