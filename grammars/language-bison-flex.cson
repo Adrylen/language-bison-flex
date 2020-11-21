@@ -76,6 +76,36 @@ patterns: [
 		beginCaptures:
 			1: { name: 'punct.rules.start' }
 		patterns: [
+			# Flex rules
+			{
+				match: '^([\'"][^\'"]*[\'"])\\s*(.*)(;)$'
+				captures:
+					1: { name: 'text.string' }
+					2: { patterns: [{ include: 'source.c' }]}
+					3: { name: 'punct.rule.end' }
+			}
+			{
+				begin: '^(\\{)([a-zA-Z]+)(\\})\\s*(\\{)'
+				beginCaptures:
+					1: { name: 'punct.block.start' }
+					2: { name: 'keyword.rule.name' }
+					3: { name: 'punct.block.end' }
+					4: { name: 'punct.code.block.start' }
+				end: '(\\})'
+				endCaptures:
+					1: { name: 'punct.code.block.end' }
+				patterns: [{ include: 'source.c' }]
+			}
+			{
+				begin: '^(.*)\\s+(\\{)'
+				beginCaptures:
+					1: { name: 'text.identifier.dynamic' }
+					2: { name: 'punct.code.block.start' }
+				end: '(\\})'
+				endCaptures:
+					1: { name: 'punct.code.block.end' }
+				patterns: [{ include: 'source.c' }]
+			}
 			# Rule
 			{
 				begin: '^([a-zA-Z]+)(:)'
