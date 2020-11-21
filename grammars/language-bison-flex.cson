@@ -8,4 +8,32 @@ fileTypes: [
 	'flex'
 ]
 name: 'Bison/Flex'
+patterns: [
+	# Top-level patterns
+	{
+		match: '//.*'
+		name: 'text.comments'
+	}
+	{
+		begin: '(/\\*)'
+		end: '(\\*/)'
+		name: 'text.comments'
+	}
+	{
+		match: '\'[^\']*\''
+		name: 'text.string'
+	}
+	{
+		match: '"[^"]*"'
+		name: 'text.string'
+	}
+	{
+		match: '%(start|token|type|union)'
+		name: 'keyword.primary'
+	}
+	{
+		match: '%(left|right|empty)'
+		name: 'keyword.second'
+	}
+]
 scopeName: 'source.y'

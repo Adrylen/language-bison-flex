@@ -2,5 +2,35 @@
 
 atom-text-editor .syntax--source {
 	&.syntax--y {
+		// Palette
+		--grey: #616161;
+		--orange: #f06543;
+		--green: #98c379;
+		--light-green: #bcebcb;
+		--high-light-yellow: #f7fff6;
+		--salmon: #C78283;
+		--blue: #61afef;
+		
+		// Keywords
+		.syntax--keyword {
+			&.syntax--primary {
+				color: var(--blue);
+			}
+			
+			&.syntax--second {
+				color: var(--salmon);
+			}
+		}
+		// Texts
+		.syntax--text {
+			&.syntax--comments {
+				color: var(--grey);
+				font-style: italic;
+			}
+			
+			&.syntax--string {
+				color: var(--green);
+			}
+		}	
 	}
 }
