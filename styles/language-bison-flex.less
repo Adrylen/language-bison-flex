@@ -20,6 +20,12 @@ atom-text-editor .syntax--source {
 			&.syntax--second {
 				color: var(--salmon);
 			}
+			
+			&.syntax--rule {
+				&.syntax--name {
+					color: var(--light-green);
+				}
+			}
 		}
 		
 		// Punctuations
@@ -39,6 +45,12 @@ atom-text-editor .syntax--source {
 					font-style: italic;
 				}
 			}
+			&.syntax--rule {
+				&.syntax--start, &.syntax--end, &.syntax--next {
+					color: var(--high-light-yellow);
+				}
+			}
+			
 			&.syntax--code {
 				&.syntax--start {
 					color: var(--orange);

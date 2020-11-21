@@ -68,6 +68,32 @@ patterns: [
 		beginCaptures:
 			1: { name: 'punct.rules.start' }
 		patterns: [
+			# Rule
+			{
+				begin: '^([a-zA-Z]+)(:)'
+				beginCaptures:
+					1: { name: 'keyword.rule.name' }
+					2: { name: 'punct.rule.start' }
+				end: '(;)'
+				endCaptures:
+					1: { name: 'punct.rule.end' }
+				patterns: [
+					{
+						match: '\\|'
+						name: 'punct.rule.next'
+					}
+					{
+						begin: '(\\{)'
+						beginCaptures:
+							1: { name: 'punct.code.block.start' }
+						end: '(\\})'
+						endCaptures:
+							1: { name: 'punct.code.block.end' }
+						patterns: [{ include: 'source.c' }]
+					}
+					{ include: '$self' }
+				]
+			}
 			# Code
 			{
 				begin: '^(%%)'
