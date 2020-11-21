@@ -45,8 +45,8 @@
 %left '+' '-'
 %left '*' '/'
 
-%%
 // Rules
+%%
 program:
 	%empty
 |	program line
@@ -70,54 +70,3 @@ expr:
 |	SIN '(' expr ')'	{ }
 |	'(' expr ')'		{ $$ = $2; }
 ;
-
-// C++ Code
-%%
-int main(int argc, char** argv)
-{
-	yyparse();
-
-	for(auto it : list)
-	{
-		std::cout << it.first << " [";
-		for(double x=min; x < max-pas; x+=pas)
-			std::cout << x << " " << eval(it.second, x) << ";";
-		std::cout << max << " " << eval(it.second, max) << "]" << std::endl;
-	}
-}
-
-void yyerror(const char* s)
-{
-
-}
-
-double eval(std::vector<int> postfixe, double x)
-{
-	std::stack<double> pile;
-	double tmp1, tmp2;
-
-	for(int i=0; i < postfixe.size(); i++)
-	{
-		if(postfixe[i] == NUM) pile.push(valeurs[i]);
-		if(postfixe[i] == VAR) pile.push(x);
-		if(postfixe[i] == '+') operate(pile, '+');
-		if(postfixe[i] == '-') operate(pile, '-');
-		if(postfixe[i] == '*') operate(pile, '*');
-		if(postfixe[i] == '/') operate(pile, '/');
-	}
-
-	return pile.top();
-}
-
-void operate(std::stack<double> & pile, char op)
-{
-	double tmp1 = pile.top(); pile.pop();
-	double tmp2 = pile.top(); pile.pop();
-	switch(op)
-	{
-		case '+': pile.push(tmp1 + tmp2); break;
-		case '-': pile.push(tmp1 - tmp2); break;
-		case '*': pile.push(tmp1 * tmp2); break;
-		case '/': pile.push(tmp1 / tmp2); break;
-	}
-}
