@@ -45,6 +45,23 @@ patterns: [
 			1: { name: 'punct.meta.block.end' }
 		patterns: [{ include: 'source.c' }]
 	}
+	# Variables
+	{
+		begin: '(?<=%\\})'
+		end: '(?=%%)'
+		patterns: [
+			{
+				begin: '(\\{)'
+				beginCaptures:
+					1: { name: 'punct.code.block.start' }
+				end: '(\\})\\s*$'
+				endCaptures:
+					1: { name: 'punct.code.block.end' }
+				patterns: [{ include: 'source.c' }]
+			}
+			{ include: '$self' }
+		]
+	}
 	# Rules and Code
 	{
 		begin: '(%%)'
