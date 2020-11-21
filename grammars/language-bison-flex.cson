@@ -51,6 +51,14 @@ patterns: [
 		end: '(?=%%)'
 		patterns: [
 			{
+				match: '<.*>'
+				name: 'text.types'
+			}
+			{
+				match: '^([a-zA-Z]+)\\s+'
+				name: 'text.identifier'
+			}
+			{
 				begin: '(\\{)'
 				beginCaptures:
 					1: { name: 'punct.code.block.start' }
