@@ -1,7 +1,9 @@
 fileTypes: [
 	'y',
 	'ypp',
+	'yy',
 	'l',
+	'll',
 	'lex',
 	'flex'
 ]
