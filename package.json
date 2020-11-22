@@ -1,6 +1,6 @@
 {
   "name": "language-bison-flex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bison and Flex files highlighting",
   "repository": "https://github.com/Adrylen/language-bison-flex",
   "license": "MIT",
