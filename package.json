@@ -6,6 +6,6 @@
   "license": "MIT",
   "author": "Adrylen",
   "engines": {
-    "atom": ">=2.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   }
 }
